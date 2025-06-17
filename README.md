@@ -1,6 +1,6 @@
 # TodoMCP
 
-A proof-of-concept Model Context Protocol (MCP) server for task management
+A proof-of-concept Model Context Protocol (MCP) server for task management.
 
 ## Scripts
 
