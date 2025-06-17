@@ -1,6 +1,6 @@
 # TodoMCP
 
-A proof-of-concept Model Context Protocol (MCP) server for task management using SQLite for storage and sqlc for type-safe database operations.
+A proof-of-concept Model Context Protocol (MCP) server for task management
 
 ## Scripts
 
@@ -21,6 +21,10 @@ Start MCP Inspector:
 ```bash
 npx @modelcontextprotocol/inspector
 ```
+
+## Stack
+
+Go, SQLite, sqlc, MCP-Go, Docker, fly.io
 
 ## Server configuration
 
