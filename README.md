@@ -1,5 +1,7 @@
 # TodoMCP
 
+A proof-of-concept Model Context Protocol (MCP) server for task management using SQLite for storage and sqlc for type-safe database operations.
+
 ## Scripts
 
 Run codegen:
