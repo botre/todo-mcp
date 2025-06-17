@@ -7,7 +7,7 @@ A proof-of-concept Model Context Protocol (MCP) server for task management using
 Run codegen:
 
 ```bash
-sql generate
+sqlc generate
 ```
 
 Start server:
@@ -25,4 +25,6 @@ npx @modelcontextprotocol/inspector
 ## Server configuration
 
 - Transport Type: SSE
-- URL: http://localhost:8080/sse
+- URLs:
+  - http://localhost:8080/sse
+  - https://todo-mcp.fly.dev/sse
