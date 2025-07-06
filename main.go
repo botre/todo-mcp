@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -17,6 +16,10 @@ import (
 
 //go:embed schema.sql
 var ddl string
+
+func formatTodo(todo codegen.Todo) string {
+	return fmt.Sprintf("\n\n- **ID**: %d\n- **Title**: %s\n- **Completed**: %v\n- **Created At**: %v", todo.ID, todo.Title, todo.Completed, todo.CreatedAt)
+}
 
 func run() error {
 	ctx := context.Background()
@@ -98,7 +101,7 @@ func run() error {
 		// Format and return the completed todos
 		result := "Completed Todos:\n"
 		for i, todo := range completed {
-			result += fmt.Sprintf("%d. %v\n", i+1, todo)
+			result += fmt.Sprintf("%d. %s\n", i+1, formatTodo(todo))
 		}
 		if len(completed) == 0 {
 			result = "No completed todos found."
@@ -115,7 +118,7 @@ func run() error {
 
 		result := "Pending Todos:\n"
 		for i, todo := range pending {
-			result += fmt.Sprintf("%d. %v\n", i+1, todo)
+			result += fmt.Sprintf("%d. %s\n", i+1, formatTodo(todo))
 		}
 		if len(pending) == 0 {
 			result = "No pending todos found."
@@ -135,7 +138,7 @@ func run() error {
 			return mcp.NewToolResultError(err.Error()), nil
 		}
 
-		result := fmt.Sprintf("Created todo: %v", todo)
+		result := fmt.Sprintf("Created todo: %s", formatTodo(todo))
 		return mcp.NewToolResultText(result), nil
 	}
 
@@ -164,7 +167,7 @@ func run() error {
 			return mcp.NewToolResultError(err.Error()), nil
 		}
 
-		result := fmt.Sprintf("Todo: %v", todo)
+		result := fmt.Sprintf("Todo: %s", formatTodo(todo))
 		return mcp.NewToolResultText(result), nil
 	}
 
@@ -179,7 +182,7 @@ func run() error {
 			return mcp.NewToolResultError(err.Error()), nil
 		}
 
-		result := fmt.Sprintf("Completed todo: %v", todo)
+		result := fmt.Sprintf("Completed todo: %s", formatTodo(todo))
 		return mcp.NewToolResultText(result), nil
 	}
 
