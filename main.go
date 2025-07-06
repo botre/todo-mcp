@@ -22,7 +22,7 @@ func run() error {
 	ctx := context.Background()
 
 	// Connect to the database
-	db, err := sql.Open("sqlite", ":memory")
+	db, err := sql.Open("sqlite", ":memory:")
 	if err != nil {
 		return err
 	}
@@ -202,8 +202,9 @@ func run() error {
 	s.AddTool(tool_delete_all_todos, deleteAllTodosHandler)
 
 	// Start server
-	log.Println("Starting server")
-	if err := server.ServeStdio(s); err != nil {
+	log.Println("Starting server...")
+	sseServer := server.NewSSEServer(s)
+	if err := sseServer.Start(":8080"); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 		fmt.Fprintf(os.Stderr, "Server error: %v\n", err)
 		os.Exit(1)
